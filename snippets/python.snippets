@@ -22,6 +22,23 @@ snippet docs
 	Description: ${0}
 	"""
 
+# pwntools
+snippet pwn
+	from pwn import *
+	context.log_level = "critical"
+	local = True
+	bin = "$0"
+	host = "$1"
+	port = "$2"
+	elf = context.binary = ELF(bin)
+	rop = ROP(elf)
+	if local:
+			p = process(elf.path)
+	else:
+			p = remote(host, port)
+	p.sendlineafter(b"$3", rop.chain())
+	print(p.recvall().decode())
+
 # Unittest skip
 snippet sk "skip unittests" b
 	@unittest.skip(${1:skip_reason})
