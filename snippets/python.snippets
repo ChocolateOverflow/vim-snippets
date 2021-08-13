@@ -27,16 +27,16 @@ snippet pwn
 	from pwn import *
 	context.log_level = "critical"
 	local = True
-	bin = "$0"
-	host = "$1"
-	port = "$2"
+	bin = "$1"
+	host = "$2"
+	port = "$3"
 	elf = context.binary = ELF(bin)
 	rop = ROP(elf)
 	if local:
 			p = process(elf.path)
 	else:
 			p = remote(host, port)
-	p.sendlineafter(b"$3", rop.chain())
+	p.sendlineafter(b"$4", rop.chain())
 	print(p.recvall().decode())
 
 # Unittest skip
