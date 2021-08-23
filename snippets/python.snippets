@@ -32,10 +32,7 @@ snippet pwn
 	port = "$3"
 	elf = context.binary = ELF(bin)
 	rop = ROP(elf)
-	if local:
-			p = process(elf.path)
-	else:
-			p = remote(host, port)
+	p = process(elf.path) if local else remote(host, port)
 	p.sendlineafter(b"$4", rop.chain())
 	print(p.recvall().decode())
 
