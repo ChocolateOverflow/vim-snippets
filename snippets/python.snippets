@@ -29,7 +29,7 @@ snippet pwn
 	local = True
 	bin = "$1"
 	host = "$2"
-	port = "$3"
+	port = $3
 	elf = context.binary = ELF(bin)
 	rop = ROP(elf)
 	p = process(elf.path) if local else remote(host, port)
