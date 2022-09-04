@@ -28,7 +28,7 @@ function test_snipmate_format {
 test_space_indented
 test_snipmate_format
 
-if [ $check -eq 0 ]; then
+if [ "$check" -eq 0 ]; then
   echo "Tests passed!"
   exit 0
 else
